@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma</title>
+</head>
+<body>
+    <h1>Soma de 2 números</h1>
+    <h2>Digite A</h2>
+    <input id="a"><br>
+    <h2>Digite B</h2>
+    <input id="b"><br><br>
+    <button onclick="soma()">Soma</button><br>
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function soma() {
+            var a = document.getElementById('a').value;
+            var b = document.getElementById('b').value;
+            var resultado = document.getElementById('resultado'); 
+            
+            a = parseInt(a);
+            b = parseInt(b);
+            
+            resultado.innerHTML = a + b; 
+        }
+    </script>
+</body>
+</html>

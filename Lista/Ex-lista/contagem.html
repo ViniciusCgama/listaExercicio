@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva</title>
+</head>
+<body>
+    <h1>Calcular a contagem regressiva de um número até 1</h1>
+    <h2>Digite um número</h2>
+    <input id="n"><br><br>
+    <button onclick="regressao()">Contagem Regressiva</button><br>
+    <p id="resultado"></p>
+
+    <script>
+        function regressao() {
+            var n = document.getElementById('n').value;
+            var resultado = document.getElementById('resultado');
+            n = parseInt(n);
+            
+            if (isNaN(n)) {
+                resultado.innerHTML = 'Digite um número válido';
+            } else {
+                contadorRegressivo(n);
+            }
+        }
+
+        function contadorRegressivo(numero) {
+            var resultado = document.getElementById('resultado');
+            resultado.innerHTML = numero;
+
+            if (numero > 1) {
+                
+                setTimeout(function() {
+                    contadorRegressivo(numero - 1);
+                }, 1000);
+        }
+    }
+    </script>
+</body>
+</html>

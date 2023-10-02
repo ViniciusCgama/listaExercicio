@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuada</title>
+</head>
+<body>
+    <h1>Tabuada</h1>
+    <h2>Digite o número</h2>
+    <input id="n"><br><br>
+    <button onclick="tabuada()">Calcular Tabuada</button><br>
+    <p id="resultado"></p>
+
+    <script>
+        function tabuada() {
+            var n = document.getElementById('n').value;
+            var resultado = document.getElementById('resultado');
+            n = parseInt(n);
+
+            if (isNaN(n)) {
+                resultado.innerHTML = 'Digite um número válido';
+            } else {
+                var tabuadaHtml = '<h2>Tabuada de ' + n + '</h2>';
+                for (var i = 1; i <= 10; i++) {
+                    tabuadaHtml += n + ' x ' + i + ' = ' + (n * i) + '<br>';
+                }
+                resultado.innerHTML = tabuadaHtml;
+            }
+        }
+    </script>
+</body>
+</html>

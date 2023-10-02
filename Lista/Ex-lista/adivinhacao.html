@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe o Número</title>
+</head>
+<body>
+
+    <h1>Adivinhe o Número</h1>
+    <p>Tente adivinhar um número entre 1 e 100.</p>
+
+    <div class="form">
+        <label for="campoPalpite">Digite um número: </label>
+        <input type="number" min="1" max="100" id="campoPalpite" class="campoPalpite">
+        <input type="button" value="Enviar" class="envioPalpite">
+    </div>
+
+    <div class="resulParas">
+        <p class="palpite"></p>
+        <p class="ultRes"></p>
+        <p class="maiormenor"></p>
+    </div>
+
+    <script>
+        var nAll = Math.floor(Math.random() * 100) + 1;
+
+        var palpite = document.querySelector(".palpite");
+        var ultRes = document.querySelector(".ultRes");
+        var maiormenor = document.querySelector(".maiormenor");
+
+        var envioPalpite = document.querySelector(".envioPalpite");
+        var campoPalpite = document.querySelector(".campoPalpite");
+
+        var botaoReset;
+
+        envioPalpite.addEventListener("click", checkPal);
+
+        var contadorPalpite = 0;
+
+        function checkPal() {
+            contadorPalpite++;
+            const palpiteUsuario = Number(campoPalpite.value);
+
+            if (contadorPalpite === 1) {
+                palpite.textContent = "Palpites anteriores: ";
+            }
+
+            palpite.textContent += palpiteUsuario + " ";
+
+            if (palpiteUsuario === nAll) {
+                ultRes.textContent = "Correto! Você acertou!";
+                maiormenor.textContent = "";
+                setGameOver();
+            } else {
+                ultRes.textContent = "Palpite errado. Tente novamente.";
+                if (palpiteUsuario < nAll) {
+                    maiormenor.textContent = "Seu palpite é menor que o número escolhido.";
+                } else if (palpiteUsuario > nAll) {
+                    maiormenor.textContent = "Seu palpite é maior que o número escolhido.";
+                }
+            }
+
+            campoPalpite.value = "";
+            campoPalpite.focus();
+        }
+
+        function setGameOver() {
+            campoPalpite.disabled = true;
+            envioPalpite.disabled = true;
+            botaoReset = document.createElement("button");
+            botaoReset.textContent = "Reiniciar";
+            document.body.appendChild(botaoReset);
+            botaoReset.addEventListener("click", resetGame);
+        }
+
+        function resetGame() {
+            botaoReset.parentNode.removeChild(botaoReset);
+            campoPalpite.disabled = false;
+            envioPalpite.disabled = false;
+            campoPalpite.value = "";
+            campoPalpite.focus();
+            ultRes.textContent = "";
+            maiormenor.textContent = "";
+            palpite.textContent = "";
+            contadorPalpite = 0;
+            nAll = Math.floor(Math.random() * 100) + 1;
+        }
+    </script>
+</body>
+</html>

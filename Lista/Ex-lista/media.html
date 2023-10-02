@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média</title>
+</head>
+<body>
+    <h1>Calcular a Média de uma Série de Números</h1>
+    <h2>Digite os números separados por vírgula (exemplo: 1,2,3,4)</h2>
+    <input id="numbers"><br><br>
+    <button onclick="calcularMedia()">Calcular Média</button><br>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularMedia() {
+            var inputNumbers = document.getElementById('numbers').value;
+            var resultado = document.getElementById('resultado');
+
+            var numbersArray = inputNumbers.split(",").map(function(item) {
+                return parseFloat(item.trim());
+            });
+
+            var sum = 0;
+            for (var i = 0; i < numbersArray.length; i++) {
+                sum += numbersArray[i];
+            }
+            var media = sum / numbersArray.length;
+
+            if (isNaN(media)) {
+                resultado.innerHTML = 'Digite uma série válida de números';
+            } else {
+                resultado.innerHTML = 'A média é: ' + media.toFixed(2); 
+            }
+        }
+    </script>
+</body>
+</html>
